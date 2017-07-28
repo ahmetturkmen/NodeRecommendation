@@ -1,0 +1,7 @@
+
+    function splitString(){
+        let string = [];
+        string=toString('Chan',users)[0].split('( ')
+        string = string[1].split(',')
+        console.log(string[0])
+    }
