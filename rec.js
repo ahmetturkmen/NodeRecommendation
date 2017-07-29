@@ -1,5 +1,4 @@
 const users = require('./users');
-
 // Manhattan method 
 function manhattan(user1, user2){
     let distance=0;
@@ -12,7 +11,7 @@ function manhattan(user1, user2){
 // Euclidean added
 function euclidean(user1,user2){
     let distance=0;
-    for(let track in user1)
+    for(let track of user1)
         if(track in user2)
             distance += ((user1[track]-user2[track])**2);           
     
@@ -25,26 +24,25 @@ function euclidean(user1,user2){
   for (let user in users) 
         if (user != username) {
        distance =manhattan(users[user],users[username]);
-        userDistanceCombination = { "distance":distance,"user":user  };
+       userDistanceCombination = { "distance":distance,"user":user  };
        distances.push(userDistanceCombination);
     }
     distances.sort(function(a,b){return a.distance-b.distance}) 
   return  distances;
  }
+// Getting the tracks of the specified user
  function getTracks(user){ let tracks = users[user];  return tracks;}
 
  function giveRecommendation(user) {
     let neighborRating= getTracks(computeNearestNeighbor(user,users)[0].user)
-    let userRating = getTracks(user)
-    let recommendation = [];
+    let userRating = getTracks(user), recommendation = [];
     for ( let key in neighborRating) 
-        if (neighborRating.hasOwnProperty(key) && !userRating.hasOwnProperty(key) ) 
-           recommendation.push(neighborRating[key]+ '  '+key);
-    
+      if (neighborRating.hasOwnProperty(key) && !userRating.hasOwnProperty(key) )   
+        recommendation.push(neighborRating[key]+ '  '+key);
     return recommendation;
 }
 // console.log(computeNearestNeighbor('Chan',users))
-console.log(giveRecommendation('Hailey'))
+console.log(giveRecommendation('Hailey').sort().reverse())
 
 //console.log(manhattan(users['Hailey'],users['Veronica'])); // manhattan distance
 //console.log(euclidean(users['Hailey'],users['Veronica'])); // Euclidean distance 
