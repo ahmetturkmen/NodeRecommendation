@@ -18,6 +18,21 @@ function euclidean(user1,user2){
     return Math.sqrt(distance)
 }
 
+// implementing Minkwoski Distance 
+
+function minkwoski(userRating1,userRating2,lambda){
+    let distance =0,commonRatingStatu = false;
+   for (let track in userRating1) {
+       if (userRating2.hasOwnProperty(track)) {
+        distance+=Math.abs(((userRating1[track]-userRating2[track])**lambda)); 
+       }
+   }
+     commonRatingStatu=true;           
+          if(commonRatingStatu)
+            return (distance**1/lambda);
+        return 0;
+}
+console.log(minkwoski(getTracks('Hailey'),getTracks('Jordyn'),3));
 // Computes nearest neighbor
  function computeNearestNeighbor(username, users){
   let distances =[],userDistanceCombination;  
