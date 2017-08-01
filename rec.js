@@ -2,7 +2,7 @@ const users = require('./users');
 // Manhattan method 
 function manhattan(user1, user2) {
     let distance = 0;
-    for (let track in user1)
+    for (let track of Object.keys(user1))
         if (track in user2)
             distance += Math.abs(user1[track] - user2[track])
     return distance;
@@ -11,7 +11,7 @@ function manhattan(user1, user2) {
 // Euclidean added
 function euclidean(user1, user2) {
     let distance = 0;
-    for (let track of user1)
+    for (let track of Object.keys(user1))
         if (track in user2)
             distance += ((user1[track] - user2[track]) ** 2);
 
