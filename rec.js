@@ -1,4 +1,5 @@
 const users = require('./users');
+
 // Manhattan method 
 function manhattan(user1, user2) {
     let distance = 0;
@@ -8,7 +9,7 @@ function manhattan(user1, user2) {
     return distance;
 }
 
-// Euclidean added
+// Euclidean method
 function euclidean(user1, user2) {
     let distance = 0;
     for (let track of Object.keys(user1))
@@ -18,11 +19,10 @@ function euclidean(user1, user2) {
     return Math.sqrt(distance)
 }
 
-// implementing Minkwoski Distance 
-
+// Implementing Minkwoski Distance
 function minkowski(userRating1, userRating2, lambda) {
     let distance = 0, commonRatingStatu = false;
-    for (let track in userRating1) {
+    for (let track of Object.keys(userRating1)) {
         if (userRating2.hasOwnProperty(track)) {
             distance += Math.abs(((userRating1[track] - userRating2[track]) ** lambda));
         }
@@ -32,10 +32,11 @@ function minkowski(userRating1, userRating2, lambda) {
         return (distance ** 1 / lambda);
     return 0;
 }
+
 // Computes nearest neighbor
 function computeNearestNeighbor(username, users) {
     let distances = [], userDistanceCombination;
-    for (let user in users)
+    for (let user of Object.keys(users))
         if (user != username) {
             distance = manhattan(users[user], users[username]);
             userDistanceCombination = { "distance": distance, "user": user };
@@ -44,13 +45,15 @@ function computeNearestNeighbor(username, users) {
     distances.sort(function (a, b) { return a.distance - b.distance })
     return distances;
 }
+
 // Getting the tracks of the specified user
 function getTracks(user) { let tracks = users[user]; return tracks; }
 
+// Giving a recommendation for a specific user
 function giveRecommendation(user) {
     let neighborRating = getTracks(computeNearestNeighbor(user, users)[0].user)
     let userRating = getTracks(user), recommendation = [];
-    for (let key in neighborRating)
+    for (let key of Object.keys(neighborRating))
         if (neighborRating.hasOwnProperty(key) && !userRating.hasOwnProperty(key))
             recommendation.push(neighborRating[key] + '  ' + key);
     return recommendation.sort().reverse();
