@@ -58,7 +58,6 @@ function giveRecommendation(user) {
             recommendation.push(neighborRating[key] + '  ' + key);
     return recommendation.sort().reverse();
 }
-
 /*
 console.log(computeNearestNeighbor('Chan', users))
 console.log(giveRecommendation('Hailey'))

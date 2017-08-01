@@ -4,7 +4,7 @@
   "description": "",
   "main": "rec.js",
   "scripts": {
-    "test": "jasmine spec/recTest.js",
+    "test": "jasmine-node spec/",
     "start": "nodemon rec.js"
   },
   "keywords": [],
