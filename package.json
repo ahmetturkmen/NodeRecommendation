@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "nodemon": "^1.11.0",
-    "redis": "^2.7.1"
+    "jasmine-node": "1.0.17"
   },
   "devDependencies": {
     "jasmine": "^2.7.0"
