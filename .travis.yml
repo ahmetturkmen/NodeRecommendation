@@ -4,5 +4,6 @@ node_js:
 before_script:
   - npm install
   - npm install -g jasmine
+  - npm install jasmine-node -g
 script: 
-  - jasmine spec/recTest.js
+  - jasmine-node spec/recSpec.js
