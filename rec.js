@@ -20,7 +20,7 @@ function euclidean(user1, user2) {
 
 // implementing Minkwoski Distance 
 
-function minkwoski(userRating1, userRating2, lambda) {
+function minkowski(userRating1, userRating2, lambda) {
     let distance = 0, commonRatingStatu = false;
     for (let track in userRating1) {
         if (userRating2.hasOwnProperty(track)) {
@@ -55,10 +55,22 @@ function giveRecommendation(user) {
             recommendation.push(neighborRating[key] + '  ' + key);
     return recommendation.sort().reverse();
 }
-// console.log(computeNearestNeighbor('Chan',users))
+
+/*
+console.log(computeNearestNeighbor('Chan', users))
 console.log(giveRecommendation('Hailey'))
-console.log(minkwoski(getTracks('Hailey'), getTracks('Jordyn'), 3));
-//console.log(manhattan(users['Hailey'],users['Veronica'])); // manhattan distance
-//console.log(euclidean(users['Hailey'],users['Veronica'])); // Euclidean distance 
-//console.log(computeNearestNeighbor('Chan',users));      // Nearest neighborhoods
-//console.log(giveRecommendation('Chan',users));
+console.log('Minkowski distance : ' + minkowski(getTracks('Hailey'), getTracks('Jordyn'), 3));
+console.log('Manhattan distance:  ' + manhattan(users['Hailey'], users['Veronica'])); // manhattan distance
+console.log('Euclidean distance: ' + euclidean(users['Hailey'], users['Veronica'])); // Euclidean distance 
+console.log(computeNearestNeighbor('Chan', users));      // Nearest neighborhoods
+console.log(giveRecommendation('Chan', users));
+console.log(getTracks('Hailey'))
+*/
+module.exports = {
+    euclidean,
+    manhattan,
+    minkowski,
+    giveRecommendation,
+    computeNearestNeighbor,
+    getTracks
+}
