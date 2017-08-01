@@ -3,7 +3,6 @@ node_js:
   - "8.2.1"
 before_script:
   - npm install
-  - npm install --save-dev jasmine
   - npm install -g jasmine
 script: 
   - node rec.js
