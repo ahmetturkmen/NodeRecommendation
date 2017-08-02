@@ -1,4 +1,4 @@
-<h1>Node-Redis</h1>
+#Node-Redis
 
 [![Build Status](https://travis-ci.org/ahmetturkmen/NodeRecommendation.svg?branch=master)](https://travis-ci.org/ahmetturkmen/NodeRecommendation)
 
