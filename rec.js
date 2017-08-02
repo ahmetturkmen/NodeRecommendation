@@ -58,16 +58,6 @@ function giveRecommendation(user) {
             recommendation.push(neighborRating[key] + '  ' + key);
     return recommendation.sort().reverse();
 }
-/*
-console.log(computeNearestNeighbor('Chan', users))
-console.log(giveRecommendation('Hailey'))
-console.log('Minkowski distance : ' + minkowski(getTracks('Hailey'), getTracks('Jordyn'), 3));
-console.log('Manhattan distance:  ' + manhattan(users['Hailey'], users['Veronica'])); // manhattan distance
-console.log('Euclidean distance: ' + euclidean(users['Hailey'], users['Veronica'])); // Euclidean distance 
-console.log(computeNearestNeighbor('Chan', users));      // Nearest neighborhoods
-console.log(giveRecommendation('Chan', users));
-console.log(getTracks('Hailey'))
-*/
 module.exports = {
     euclidean,
     manhattan,
