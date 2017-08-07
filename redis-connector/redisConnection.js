@@ -1,65 +1,136 @@
+
+const data = require('./import-data')
 const redis = require('redis');
 const redisClient = redis.createClient();
-var values =[];
+// Gets user name as a parent key 
+function getKeyPromise() {
+    let values = [];
+    let getKeys = new Promise(function (resolve, reject) {
+        redisClient.keys('*', (err, responde) => {
+            if (err)
+                reject(err);
+            else
+                resolve(responde);
 
-redisClient.flushall();
+        });
+    });
+    getKeys
+        .then((element) => {
+            element.forEach((elementsInElementArray) => {
+                values.push(elementsInElementArray)
+            });
+            console.log(values)
+        })
+       
 
-redisClient.hmset('Angelica', { "Blues Traveler": 3.5, "Broken Bells": 2.0, "Norah Jones": 4.5, "Phoenix": 5.0, "Slightly Stoopid": 1.5, "The Strokes": 2.5, "Vampire Weekend": 2.0 });
-redisClient.hmset('Bill', { "Blues Traveler": 2.0, "Broken Bells": 3.5, "Deadmau5": 4.0, "Phoenix": 2.0, "Slightly Stoopid": 3.5, "Vampire Weekend": 3.0 });
-redisClient.hmset('Dan', { "Blues Traveler": 3.0, "Broken Bells": 4.0, "Deadmau5": 4.5, "Phoenix": 3.0, "Slightly Stoopid": 4.5, "The Strokes": 4.0, "Vampire Weekend": 2.0 });
-redisClient.hmset('Hailey', { "Broken Bells": 4.0, "Deadmau5": 1.0, "Norah Jones": 4.0, "The Strokes": 4.0, "Vampire Weekend": 1.0 });
-redisClient.hmset('Jordyn', { "Broken Bells": 4.5, "Deadmau5": 4.0, "Norah Jones": 5.0, "Phoenix": 5.0, "Slightly Stoopid": 4.5, "The Strokes": 4.0, "Vampire Weekend": 4.0 });
-redisClient.hmset('Sam', { "Blues Traveler": 5.0, "Broken Bells": 2.0, "Norah Jones": 3.0, "Phoenix": 5.0, "Slightly Stoopid": 4.0, "The Strokes": 5.0 });
-redisClient.hmset('Veronica', { "Blues Traveler": 3.0, "Norah Jones": 5.0, "Phoenix": 4.0, "Slightly Stoopid": 2.5, "The Strokes": 3.0 });
 
 
-function getKeyPromise(){
-let getKeys = new Promise(function(resolve, reject){ 
-    redisClient.keys('*',(err,responde)=>{
-        if(err)
-            reject(err);
-        else 
+
+
+}
+
+// Gets users' tracks like a child keys 
+
+function getChildKeys(user) {
+    let keyValues = [];
+    let promiseOnKeys = new Promise(function (resolve, reject) {
+        redisClient.hkeys(user, (err, response) => {
+            if (err)
+                reject('Failed');
+            else
+                resolve(response);
+        });
+    });
+
+    promiseOnKeys
+        .then((element) => {
+            element.forEach(function (element) {
+                keyValues.push(element);
+            });
+        })
+        // .then(() => { console.log(keyValues) })
+        .catch((err) => { console.log(err) })
+}
+
+// Gets childKey values which are rating points 
+function getChildKeyValues(user) {
+    let assignedChildKeyValues = [];
+    let childKeyValues = new Promise(function (resolve, reject) {
+
+        redisClient.HVALS(user, (err, responde) => {
+            if (err)
+                reject('Failed');
             resolve(responde);
-    
+        });
+
     });
-});
-getKeys
-.then((element)=>{
-    element.forEach((elementsInElementArray) =>{
-        values.push(elementsInElementArray)
-    });
-    console.log(values)
-})
-.catch((reason)=>{console.log(reason)})
+
+    childKeyValues.then((arrayOfChildValues) => {
+        arrayOfChildValues.forEach((element) => {
+            assignedChildKeyValues.push(element);
+        });
+
+    })
+        .then(() => {
+            console.log(assignedChildKeyValues)
+        })
+        .catch((err) => { console.log(err) })
 }
 getKeyPromise();
+// getChildKeys('Dan')
+getChildKeyValues('Dan')
 
 
 
 
+/* 
+
+async function minkowski(userRating1, userRating2, lambda) {
+    let distance = 0, commonRatingStatu = false;
+    for (let track of Object.keys(userRating1)) {
+        if (userRating2.hasOwnProperty(track)) {
+            distance += Math.abs(((userRating1[track] - userRating2[track]) ** lambda));
+        }
+    }
+    commonRatingStatu = true;
+    if (commonRatingStatu)
+        return (distance ** 1 / lambda);
+    return 0;
+}
+async function computeNearestNeighbor(username, users) {
+    let distances = [], userDistanceCombination;
+    for (let user of Object.keys(users))
+        if (user != username) {
+            distance = manhattan(users[user], users[username]);
+            userDistanceCombination = { "distance": distance, "user": user };
+            distances.push(userDistanceCombination);
+        }
+    distances.sort(function (a, b) { return a.distance - b.distance })
+    return distances;
+}
+async function getTracks(user) { let tracks = users[user]; return tracks; }
+
+async function giveRecommendation(user) {
+    let neighborRating = getTracks(computeNearestNeighbor(user, users)[0].user)
+    let userRating = getTracks(user), recommendation = [];
+    for (let key of Object.keys(neighborRating))
+        if (neighborRating.hasOwnProperty(key) && !userRating.hasOwnProperty(key))
+            recommendation.push(neighborRating[key] + '  ' + key);
+    return recommendation.sort().reverse();
+}
+function manhattan(user1, user2) {
+    let distance = 0;
+    for (let track of Object.keys(user1))
+        if (track in user2)
+            distance += Math.abs(user1[track] - user2[track]);
+}
+function euclidean(user1, user2) {
+    let distance = 0;
+    for (let track of Object.keys(user1))
+        if (track in user2)
+            distance += ((user1[track] - user2[track]) ** 2);
+}
+
+ */
 
 
-
-
-
-
-
-
-
-
-
-
-// function getValues(user) {
-//     redisClient.HGETALL(user, (err, value) => {
-//         if (err)
-//             throw err;
-//         console.log(value);
-//     });
-// };
-
-
-
-
-// getKeys();
-// getValues()
-//  console.log(hmKeys)
