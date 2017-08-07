@@ -13,31 +13,26 @@ redisClient.hmset('Sam', { "Blues Traveler": 5.0, "Broken Bells": 2.0, "Norah Jo
 redisClient.hmset('Veronica', { "Blues Traveler": 3.0, "Norah Jones": 5.0, "Phoenix": 4.0, "Slightly Stoopid": 2.5, "The Strokes": 3.0 });
 
 
-redisClient.multi()
-    .keys('*', (err, responde) => {
-        let i = 0;
-        if (err)
-            throw err;
-        redisClient.hmget(responde);
-
-
-    })
-    .exec(function (err, responses) {
-        responses.forEach((element) => {
-            element.forEach((element) => {
-                 values.push(element);
-                console.log(element);
-            });
-        });
+function getKeyPromise(){
+let getKeys = new Promise(function(resolve, reject){ 
+    redisClient.keys('*',(err,responde)=>{
+        if(err)
+            reject(err);
+        else 
+            resolve(responde);
+    
     });
-
-
- console.log(values)
-
-
-
-
-
+});
+getKeys
+.then((element)=>{
+    element.forEach((elementsInElementArray) =>{
+        values.push(elementsInElementArray)
+    });
+    console.log(values)
+})
+.catch((reason)=>{console.log(reason)})
+}
+getKeyPromise();
 
 
 
