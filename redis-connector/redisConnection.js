@@ -15,17 +15,12 @@ function getKeyPromise() {
         });
     });
     getKeys
-        .then((element) => {
-            element.forEach((elementsInElementArray) => {
+        .then((arrayOfElements) => {
+            arrayOfElements.forEach((elementsInElementArray) => {
                 values.push(elementsInElementArray)
             });
             console.log(values)
         })
-       
-
-
-
-
 
 }
 
@@ -65,12 +60,13 @@ function getChildKeyValues(user) {
 
     });
 
-    childKeyValues.then((arrayOfChildValues) => {
-        arrayOfChildValues.forEach((element) => {
-            assignedChildKeyValues.push(element);
-        });
+    childKeyValues
+        .then((arrayOfChildValues) => {
+            arrayOfChildValues.forEach((element) => {
+                assignedChildKeyValues.push(element);
+            });
 
-    })
+        })
         .then(() => {
             console.log(assignedChildKeyValues)
         })
