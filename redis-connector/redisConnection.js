@@ -15,7 +15,7 @@ let getKeys = new Promise(function (resolve, reject) {
 getKeys
     .then((arrayOfElements) => {
         arrayOfElements.forEach((elementsInElementArray) => {
-          userNames.push(elementsInElementArray)  
+            userNames.push(elementsInElementArray)
         });
 
     })
@@ -23,10 +23,38 @@ getKeys
         console.log(userNames)
     })
     .then(() => {
-
+        getTracks('Veronica');
+    })
+    .then(() => {
+        getChildKeyValues('Veronica')
     })
     .catch((err) => { console.log(err) })
 
+
+
+function getChildKeyValues(user) {
+    let assignedChildKeyValues = [];
+    let childKeyValues = new Promise(function (resolve, reject) {
+
+        redisClient.HVALS(user, (err, responde) => {
+            if (err)
+                reject('Failed');
+            resolve(responde);
+        });
+
+    });
+
+    childKeyValues.then((arrayOfChildValues) => {
+        arrayOfChildValues.forEach((element) => {
+            assignedChildKeyValues.push(element);
+        });
+
+    })
+        .then(() => {
+            console.log(assignedChildKeyValues)
+        })
+        .catch((err) => { console.log(err) })
+}
 
 function getTracks(user) {
     let promiseOnKeys = new Promise(function (resolve, reject) {
@@ -43,5 +71,3 @@ function getTracks(user) {
         })
         .catch((err) => { console.log(err) })
 }
-
-getTracks('Hailey')
