@@ -2,8 +2,9 @@
 const data = require('./import-data')
 const redis = require('redis');
 const redisClient = redis.createClient();
-
+var userTracks;
 let userNames = [];
+
 let getKeys = new Promise(function (resolve, reject) {
     redisClient.keys('*', (err, responde) => {
         if (err)
@@ -23,15 +24,12 @@ getKeys
         console.log(userNames)
     })
     .then(() => {
-        getTracks('Veronica');
-    })
-    .then(() => {
-        getChildKeyValues('Veronica')
+        getTracks('Veronica')
     })
     .catch((err) => { console.log(err) })
 
 
-
+/* 
 function getChildKeyValues(user) {
     let assignedChildKeyValues = [];
     let childKeyValues = new Promise(function (resolve, reject) {
@@ -55,8 +53,10 @@ function getChildKeyValues(user) {
         })
         .catch((err) => { console.log(err) })
 }
-
+ */
 function getTracks(user) {
+    let expression = /[w+\s.\w+]+/g  // RegEx is used to get the data desired form 
+    let variable, arrayOfTracksAndPoints = []
     let promiseOnKeys = new Promise(function (resolve, reject) {
         redisClient.hgetall(user, (err, response) => {
             if (err)
@@ -67,7 +67,22 @@ function getTracks(user) {
     });
     promiseOnKeys
         .then((trackPoints) => {
-            console.log(JSON.stringify(trackPoints))
+            do {
+                variable = expression.exec(JSON.stringify(trackPoints))
+                if (variable)
+                    // console.log(variable[0])
+                    arrayOfTracksAndPoints.push(variable[0])
+            } while (variable)
+
+        })
+        .then(() => {
+            console.log(arrayOfTracksAndPoints)
+        })
+        .then(() => {
+            userTracks = arrayOfTracksAndPoints;
         })
         .catch((err) => { console.log(err) })
 }
+
+
+
