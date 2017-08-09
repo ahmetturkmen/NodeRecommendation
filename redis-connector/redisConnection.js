@@ -2,10 +2,10 @@
 const data = require('./import-data')
 const redis = require('redis');
 const redisClient = redis.createClient();
-var userTracks;
-let userNames = [];
 
+let userNames = [];
 let getKeys = new Promise(function (resolve, reject) {
+
     redisClient.keys('*', (err, responde) => {
         if (err)
             reject(err);
@@ -77,9 +77,6 @@ function getTracks(user) {
         })
         .then(() => {
             console.log(arrayOfTracksAndPoints)
-        })
-        .then(() => {
-            userTracks = arrayOfTracksAndPoints;
         })
         .catch((err) => { console.log(err) })
 }
