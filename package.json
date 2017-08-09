@@ -11,8 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "jasmine-node": "1.0.17",
     "nodemon": "^1.11.0",
-    "jasmine-node": "1.0.17"
+    "redis": "^2.8.0"
   },
   "devDependencies": {
     "jasmine": "^2.7.0"
