@@ -23,9 +23,6 @@ getKeys
     .then(() => {
         console.log(userNames)
     })
-    .then(() => {
-        getTracks('Veronica')
-    })
     .catch((err) => { console.log(err) })
 
 
@@ -83,3 +80,4 @@ function getTracks(user) {
 
 
 
+getTracks('Veronica');
