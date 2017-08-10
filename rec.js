@@ -35,7 +35,7 @@ function minkowski(userRating1, userRating2, lambda) {
 
 // Computes nearest neighbor
 function computeNearestNeighbor(username, users) {
-    let distances = [], userDistanceCombination;
+    let distances = [],distance, userDistanceCombination;
     for (let user of Object.keys(users))
         if (user !== username) {
             distance=euclidean(users[user],users[username]);
@@ -43,7 +43,7 @@ function computeNearestNeighbor(username, users) {
             userDistanceCombination = { "distance": distance, "user": user };
             distances.push(userDistanceCombination);
         }
-    distances.sort(function (a, b) { return a.distance - b.distance })
+    distances.sort(function (a, b) { return a.distance - b.distance });
     return distances;
 }
 
