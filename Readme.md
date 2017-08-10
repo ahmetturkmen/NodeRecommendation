@@ -2,6 +2,9 @@
 
 [![Build Status](https://travis-ci.org/ahmetturkmen/NodeRecommendation.svg?branch=master)](https://travis-ci.org/ahmetturkmen/NodeRecommendation)
 
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8cd652b23b4943d0944bb4c3ae891d11)](https://www.codacy.com/app/dev.ahmetturkmen/NodeRecommendation?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ahmetturkmen/NodeRecommendation&amp;utm_campaign=Badge_Grade)
+
 * _Jasmine testing framework is used_
 * _Travis CI is used_
 
