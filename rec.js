@@ -37,8 +37,9 @@ function minkowski(userRating1, userRating2, lambda) {
 function computeNearestNeighbor(username, users) {
     let distances = [], userDistanceCombination;
     for (let user of Object.keys(users))
-        if (user != username) {
-            distance = manhattan(users[user], users[username]);
+        if (user !== username) {
+            distance=euclidean(users[user],users[username]);
+            // distance = manhattan(users[user], users[username]);
             userDistanceCombination = { "distance": distance, "user": user };
             distances.push(userDistanceCombination);
         }
