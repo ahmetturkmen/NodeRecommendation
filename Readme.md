@@ -1,5 +1,6 @@
 # Node-Redis
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8cd652b23b4943d0944bb4c3ae891d11)](https://www.codacy.com/app/dev.ahmetturkmen/NodeRecommendation?utm_source=github.com&utm_medium=referral&utm_content=ahmetturkmen/NodeRecommendation&utm_campaign=badger)
 [![Build Status](https://travis-ci.org/ahmetturkmen/NodeRecommendation.svg?branch=master)](https://travis-ci.org/ahmetturkmen/NodeRecommendation)
 
 
