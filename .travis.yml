@@ -1,9 +1,0 @@
-language: node_js
-node_js:
-  - "8.2.1"
-before_script:
-  - npm install
-  - npm install -g jasmine
-  - npm install jasmine-node -g
-script: 
-  - jasmine-node spec/recSpec.js
