@@ -46,7 +46,6 @@ function computeNearestNeighbor(username, users) {
     distances.sort(function (a, b) { return a.distance - b.distance });
     return distances;
 }
-
 // Getting the tracks of the specified user
 function getTracks(user) { let tracks = users[user]; return tracks; }
 

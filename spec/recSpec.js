@@ -51,14 +51,14 @@ describe('User\'s tracks ', function () {
 describe('computing nearest neighbors', function () {
     let counter = 0;
     it('neighbors', function () {
-        let nearestNeighbors = [
-            { distance: 4, user: 'Hailey' },
-            { distance: 4, user: 'Sam' },
-            { distance: 4.5, user: 'Angelica' },
-            { distance: 6.5, user: 'Veronica' },
-            { distance: 12, user: 'Jordyn' },
-            { distance: 14, user: 'Bill' },
-            { distance: 14, user: 'Dan' }];
+        let nearestNeighbors = [ 
+        { distance: 2.3979157616563596, user: 'Angelica' },
+        { distance: 3.1622776601683795, user: 'Hailey' },
+        { distance: 3.1622776601683795, user: 'Sam' },
+        { distance: 3.3541019662496847, user: 'Veronica' },
+        { distance: 6.123724356957945, user: 'Jordyn' },
+        { distance: 6.284902544988268, user: 'Bill' },
+        { distance: 6.442049363362563, user: 'Dan' } ];
 
         expect(rec.computeNearestNeighbor('Chan',users)).toEqual(nearestNeighbors);
     });
