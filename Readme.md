@@ -9,7 +9,7 @@
 <b><p align="center" >How to make unit test by using Jasmine in terminal showed.</p></b>
 
 <p align="center">
-    <a href="https://asciinema.org/a/PjasnypDPkFAiXNGSg9wwS7d" target="_blank"><img width="80%" src="https://asciinema.org/a/PjasnypDPkFAiXNGSg9wwS7dt.png" />
+    <a href="https://asciinema.org/a/15I5pd8ozeVOuyT9FzjfCzJY0" target="_blank"><img width="80%" src="https://asciinema.org/a/15I5pd8ozeVOuyT9FzjfCzJY0.png" />
     </a>
 </p>
 
