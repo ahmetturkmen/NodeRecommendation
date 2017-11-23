@@ -4,10 +4,9 @@
   "before_script": [
     "npm install",
     "npm install -g jasmine",
-    "npm install jasmine-node -g"
-  ],
+    ],
   "script": [
-    "jasmine-node spec/recSpec.js"
+    "jasmine spec/recSpec.js"
   ],
   "group": "stable",
   "dist": "trusty",
