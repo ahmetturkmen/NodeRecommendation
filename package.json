@@ -13,7 +13,7 @@
   "dependencies": {
     "codacy-coverage": "^2.0.2",
     "jasmine-node": "1.0.17",
-    "nodemon": "^1.11.0",
+    "nodemon": "^2.0.3",
     "redis": "^2.8.0"
   },
   "devDependencies": {
