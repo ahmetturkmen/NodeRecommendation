@@ -5,7 +5,9 @@
   "main": "rec.js",
   "scripts": {
     "test": "jasmine-node spec/recSpec.js",
-    "start": "nodemon rec.js"
+    "start": "nodemon rec.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "keywords": [],
   "author": "",
@@ -14,10 +16,12 @@
     "codacy-coverage": "^2.0.2",
     "jasmine-node": "1.0.17",
     "nodemon": "^1.11.0",
-    "redis": "^2.8.0"
+    "redis": "^2.8.0",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "grunt-template-jasmine-istanbul": "^0.5.0",
     "jasmine": "^2.7.0"
-  }
+  },
+  "snyk": true
 }
